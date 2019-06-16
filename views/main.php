@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="/assets/css/style.css">
            <meta charset="UTF-8" />
     <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js' ></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
     <script src='https://code.jquery.com/jquery-3.4.1.js'
             integrity='sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU='
@@ -27,6 +29,34 @@
             });
         });
     </script>
+    <link href="docsupport/style.css" rel="stylesheet" />
+    <link href="chosen.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+    <script src="chosen.jquery.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.chosen-select').chosen();
+
+            jQuery.validator.setDefaults({
+                debug: true,
+                success: "valid"
+            });
+            $( "#adduser" ).validate({
+                rules: {
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    name: {
+                        required: true,
+                    }
+                }
+            });
+
+        });
+    </script>
+
 
 </head>
 <body>
