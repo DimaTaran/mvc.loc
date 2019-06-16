@@ -26,7 +26,10 @@ class Bootstrap
 
     public function createController()
     {
-//var_dump(class_exists('home', $autoload = false), $this->controller); die;
+//var_dump(class_exists('user'), $this->controller); die;
+
+//        var_dump($this->request['controller']);
+//        var_dump( class_exists($this->request['controller']));
         if (class_exists($this->controller)) {
             $parents = class_parents($this->controller);
 //            var_dump($parents);

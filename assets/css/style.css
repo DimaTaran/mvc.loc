@@ -1,3 +1,7 @@
 .btn-share{
 	margin-bottom:20px;
 }
+
+.select-visible{
+	visibility:hidden;
+}

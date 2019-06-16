@@ -14,7 +14,7 @@ abstract class Controller
 
     // при вызове для конкретного экзмепларя вместо {$this->action} конкретный запрос action из $_GET,
     // который определился при вызове createController() в определенном экзмепляре $controller класса HOME
-    // для HOME это Index из homel.php $this->{$this->action}() = $controller->executeAction() or $controller->index()
+    // для HOME это Index из home.php $this->{$this->action}() = $controller->executeAction() or $controller->index()
     public function executeAction()
     {
         return $this->{$this->action}();

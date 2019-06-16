@@ -3,7 +3,13 @@
 
 class Home extends Controller
 {
-    protected function Index(){
+// провекрка работы метода
+//    protected function User()
+//    {
+////        echo 'HOME/INDEX';
+//    }
+    protected function Index()
+    {
 //        echo 'HOME/INDEX';
 //        var_dump(class_exists('HomeModel'));
         $viewmodel = new HomeModel();
@@ -14,29 +20,7 @@ class Home extends Controller
         echo "
          <!DOCTYPE html>
     <html lang='ru'>
-    <head>
-        <title>Двойной выпадающий список</title>
-        <meta charset='utf-8'>
-        <script type='text/javascript' src='https://raw.githubusercontent.com/igorsimdyanov/php7/master/ajax/jquery.js' ></script>
-
-        <script src='https://code.jquery.com/jquery-3.4.1.js'
-        integrity='sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU='
-        crossorigin='anonymous'></script>
-    <script type='text/javascript'>
-    $(function(){
-      $('#fst').on('change', function(){
-        // AJAX-запрос
-        $.ajax({
-          url: 'select.php?id=' + $('#fst').val()
-        })
-        .done(function(data){
-          $('#snd').html(data);
-          $('#snd').prop('disabled', false);
-        });
-      });
-    });
-  </script>
-  </head>
+   
   <body>"; ?>
   <?php
     // Устанавливаем соединение с базой данных
@@ -48,12 +32,25 @@ class Home extends Controller
     $com = $pdo->query($query);
 
     while($catalog = $com->fetch()) {
-//        var_dump($catalog['ter_address']);die;
-      echo "<option value='{$catalog['ter_address']}'>{$catalog['ter_address']}</option>";
+       $city = explode(',', $catalog['ter_address'] );
+//       var_dump($city[1]);
+      echo "<option value='{$catalog['ter_address']}'>{$city[2]}</option>";
     }
     echo "</select>
-  <select id='snd' disabled='disabled'>
-  <option value='0'>Выберите подраздел</option>
+
+<select id='snd' class='select-visible' >
+<option value='0'>Выберите город</option>";
+
+$query = "SELECT ter_name FROM t_koatuu_tree LIMIT 100";
+$cat = $pdo->query($query);
+
+echo "<option value='0'>Выберите подраздел</option>";
+while($catalog = $cat->fetch()) {
+    echo "<option value='{$catalog['ter_name']}'>{$catalog['ter_name']}</option>";
+}
+
+
+  echo "
   </select>
 </body>
 </html>";
