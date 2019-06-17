@@ -24,6 +24,7 @@
     <tr>
     <?php
 //    var_dump($viewmodel ); die;
+    if ($viewmodel) {
     foreach($viewmodel as $item) : ?>
 
         <td><?php echo $item; ?></td>
@@ -35,7 +36,11 @@
 
 <!--            <td>--><?php //echo $item['country']; ?><!--</td>-->
 
-    <?php endforeach; ?>
+    <?php endforeach; } ?>
     </tr>
 </table>
 
+<div class='text-center'>
+
+    <a class='btn btn-primary text-center' href="<?php echo ROOT_PATH;?>user">Зарегистрировать снова</a>
+</div>

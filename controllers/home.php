@@ -6,7 +6,13 @@ class Home extends Controller
 
     protected function Index()
     {
-        $viewmodel = new HomeModel();
+        try {
+            $viewmodel = new HomeModel();
+        } catch (PDOException $e) {
+            echo "Невозможно установить соединение с базой данных";
+        }
+
+
         $this->ReturnView($viewmodel->Index(), true);
     }
 }

@@ -5,9 +5,31 @@ class HomeModel extends Model
 {
     public function Index()
     {
-        $this->query('SELECT * FROM user');
-        $rows = $this->resultSet();
-        return $rows;
+
+       $this->query('SHOW TABLES');
+        $results = $this->resultSet();
+//            var_dump( $results);die;
+        if(count($results)>1) {
+            $this->query('SELECT * FROM user');
+            $rows = $this->resultSet();
+            return $rows;
+        } else {
+
+            $qwery = '
+        create table user
+(id int auto_increment,
+ email varchar(100) null,
+ name varchar(255) null,
+ city varchar(255) null,
+ district varchar(255) null,
+ country varchar(255) null,
+     constraint user_pk
+     primary key (id)
+)';
+         $this->query($qwery);
+         $this->execute();
+//        var_dump($result);die;
+    }
     }
 
     public function registerUser()
