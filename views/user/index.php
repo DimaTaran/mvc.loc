@@ -17,7 +17,7 @@
                 <label>Область</label>
 <?php //$catalog = $viewmodel->resultSet(); //var_dump($viewmodel->query('SELECT ter_address FROM t_koatuu_tree WHERE ter_level=3 LIMIT 1000'));?>
                <select id='country' name='country' class='form-control chosen-select'>
-                   <option value='0'>Выберите область</option>
+                   <option value='0'>Выберете область</option>
                     <?php
                     $catalog = $viewmodel->resultSet();
 //var_dump($catalog); die;
@@ -75,13 +75,13 @@
     </div>
 </div>
 <!--<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>-->
-<!--<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <!--<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>-->
 
 <script>
     // just for the demos, avoids form submit
     jQuery.validator.setDefaults({
-        debug: true,
+        debug: false,
         success: "valid"
     });
     $( "#adduser" ).validate({
@@ -93,6 +93,7 @@
             name: {
                 required: true,
             }
+
         }
     });
 </script>

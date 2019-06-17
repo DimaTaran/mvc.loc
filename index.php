@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once(__DIR__. '/vendor/autoload.php');
     // Include Config and other classes
 require('config.php');

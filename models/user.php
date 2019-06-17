@@ -12,6 +12,24 @@ class UserModel extends Model
 ////        var_dump($this);
 //    }
 
+    public function exist()
+    {
+//        $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+//        var_dump($email);
+        $email =  $_SESSION['email'];
+
+        $_SESSION =[];
+//        unset($_COOKIE[session_name()]);
+//        @session_destroy();
+        $query_string = "SELECT * FROM user WHERE email='" . $email . "'";
+
+//            var_dump(  $email, $query_string);
+        $this->query($query_string);
+//            $this->bind(':email', $post['email']);
+        $rows = $this->single();
+        return $rows;
+    }
+
     public function Index()
     {
         $this->query('SELECT ter_address FROM t_koatuu_tree WHERE ter_level=1 LIMIT 100');
@@ -20,16 +38,37 @@ class UserModel extends Model
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 //        var_dump( $post);
         if ($post['submit']) {
-            // Insert into MySQL
-            $this->query('INSERT INTO user (name, email, city, country, district) VALUES(:name, :email, :city, :country, :district )');
-            $this->bind(':name', $post['name']);
-            $this->bind(':email', $post['email']);
-            $this->bind(':city', $post['city']);
-            $this->bind(':country', $post['country']);
-            $this->bind(':district', $post['district']);
+            $query_string = "SELECT * FROM user WHERE email='" . $post['email'] . "'";
+
+//            var_dump( $post['email'], $query_string);
+            $this->query($query_string);
+//            $this->bind(':email', $post['email']);
+            $rows = $this->single();
+//           var_dump($rows); die;
+            if($rows) {
+
+//                if (isset($_SESSION['email'])) {
+//                    $_SESSION['email'] = 0;
+//                }
+                global $email;
+                $email = $post['email'];
+                $_SESSION['email'] = $post['email'];
+//var_dump($email);
+                header('Location: ' . ROOT_URL . 'user/exist');
+//                return;
+            } else {
+                // Insert into MySQL
+                $this->query('INSERT INTO user (name, email, city, country, district) VALUES(:name, :email, :city, :country, :district )');
+                $this->bind(':name', $post['name']);
+                $this->bind(':email', $post['email']);
+                $this->bind(':city', $post['city']);
+                $this->bind(':country', $post['country']);
+                $this->bind(':district', $post['district']);
 //            $this->execute();
-            // Redirect
-             header('Location: '.ROOT_URL);
+                // Redirect
+                header('Location: ' . ROOT_URL);
+
+            }
         }
         return $this;
     }
