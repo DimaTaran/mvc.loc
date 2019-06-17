@@ -29,10 +29,10 @@
             });
         });
     </script>
-    <link href="docsupport/style.css" rel="stylesheet" />
-    <link href="chosen.css" rel="stylesheet" />
+<!--    <link href="docsupport/style.css" rel="stylesheet" />-->
+    <link href="/vendor/harvesthq/chosen/chosen.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
-    <script src="chosen.jquery.js"></script>
+    <script src="/vendor/harvesthq/chosen/chosen.jquery.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {

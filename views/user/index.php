@@ -15,62 +15,55 @@
 
             <div class="form-group">
                 <label>Область</label>
-<?php //$catalog = $viewmodel->resultSet(); //var_dump($catalog[1]['ter_address']);?>
-               <select id='country' name='country' class="form-control">
+<?php //$catalog = $viewmodel->resultSet(); //var_dump($viewmodel->query('SELECT ter_address FROM t_koatuu_tree WHERE ter_level=3 LIMIT 1000'));?>
+               <select id='country' name='country' class='form-control chosen-select'>
                    <option value='0'>Выберите область</option>
                     <?php
                     $catalog = $viewmodel->resultSet();
-//                    var_dump($catalog); die;
+//var_dump($catalog); die;
                    foreach($catalog as $city)
                    {
-//                       var_dump($city['ter_address']); die;
-                       $city1 = explode(',', $city['ter_address'] );
-                       $value = trim($city1[2]);
+//                       $city1 = explode(',', $city['ter_address'] );
+                       $value = trim($city['ter_address']);
                       echo "<option>$value</option>";
                    }
-
-//                           var_dump($viewmodel->single());
-//                    while(false) {
-//                    $city = explode(',', $catalog['ter_address'] );
-//                    ?>
-<!--                  <option value="--><?php //$city[2]; ?><!--">--><?php //$city[2]; ?><!--</option>-->
-<!--                    --><?php //} ?>
+                    ?>
                </select>
-
             </div>
-
-
-<!--            <div class="form-group">-->
-<!--                <label>Область</label>-->
-<!---->
-<!--            <textarea name="country" class="form-control"></textarea>-->
-<!--            </div>-->
             <div class="form-group">
-
                 <label>Город</label>
+                <?php
+//                    $viewmodel->query('SELECT ter_name FROM t_koatuu_tree WHERE ter_level=2 and ter_type_id=1 LIMIT 1000');
+//                    $catalog2 = $viewmodel->resultSet();
+//                    var_dump($catalog2);
+//                    ?>
 
-                <select id='city' name='city' class="form-control">
-                    <option value='0'>Выберите область</option>
-                    <?php foreach($catalog as $city)
+                <select id='city' name='city' class="form-control chosen-select">
+                    <option value='0'>Выберите город</option>
+                    <?php
+                    $viewmodel->query('SELECT ter_name FROM t_koatuu_tree WHERE ter_level=2 and ter_type_id=1 LIMIT 1000');
+                    $catalog = $viewmodel->resultSet();
+//                    var_dump($viewmodel->resultSet());
+                    foreach($catalog as $city)
                     {
-                        $city1 = explode(',', $city['ter_address'] );
-                        $value = trim($city1[1]);
+//                        $city1 = explode(',', $city['ter_address'] );
+                        $value = trim($city['ter_name']);
                         echo "<option>$value</option>";
                     } ?>
                 </select>
-
-  <!--                <textarea name="city" class="form-control"></textarea>-->
             </div>
 
             <div class="form-group">
                 <label>Район</label>
-
-                <select id='city' name='district' class="form-control">
-                    <option value='0'>Выберите область</option>
-                    <?php foreach($catalog as $city)
+                <select id='city' name='district' class="form-control chosen-select">
+                    <option value='0'>Выберите район</option>
+                    <?php
+                    $viewmodel->query('SELECT ter_name FROM t_koatuu_tree WHERE ter_level=2 and ter_type_id=2 LIMIT 1000');
+                    $catalog = $viewmodel->resultSet();
+                    foreach($catalog as $city)
                     {
-                        $city1 = explode(',', $city['ter_address'] );
-                        $value = trim($city1[0]);
+//                        $city1 = explode(',', $city['ter_address'] );
+                        $value = trim($city['ter_name']);
                         echo "<option>$value</option>";
                     } ?>
                 </select>

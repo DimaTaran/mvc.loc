@@ -3,16 +3,20 @@
 class UserModel extends Model
 {
 
-    public function getData()
-    {
-        $this->query('SELECT ter_address FROM t_koatuu_tree LIMIT 1000');
-        var_dump($this);
-    }
+
+    public $ter2;
+
+//    public function getData()
+//    {
+//        $this->query('SELECT ter_address FROM t_koatuu_tree LIMIT 1000');
+////        var_dump($this);
+//    }
 
     public function Index()
     {
-        $this->query('SELECT ter_address FROM t_koatuu_tree LIMIT 1000');
+        $this->query('SELECT ter_address FROM t_koatuu_tree WHERE ter_level=1 LIMIT 100');
 
+//        $this->ter2 = $this->query('SELECT ter_address FROM t_koatuu_tree WHERE ter_level=2 LIMIT 1000');
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 //        var_dump( $post);
         if ($post['submit']) {
